@@ -1,3 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 label {
   display: block;
   margin-top: 10px;
@@ -7,7 +14,9 @@ label {
   max-width: 350px !important;
   padding: 40px 40px;
 }
-
+.mainclass{
+  font-family: 'Poppins', sans-serif;
+}
 .card {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;
@@ -30,3 +39,38 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+.aimtoolsp{
+
+}
+
+
+.homemaindiv{
+  margin-top: 70px;
+  margin-left: 25px;
+  width: 100vw;
+}
+
+.ttom{
+  font-size: 100px;
+  font-weight: 700;
+  
+}
+
+.txtandimg{
+  margin-top: 25px;
+overflow: hidden;
+width: 100%;
+}
+
+.leftfloatdiv{
+  float: left;
+  width: 60%;
+  
+}
+
+.rightfloatdiv{
+  width: 40%;
+  overflow: hidden;
+}
+
+

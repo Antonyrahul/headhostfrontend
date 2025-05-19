@@ -486,8 +486,8 @@ export default class Home extends Component {
         <div id="layout" className="mainclass">
           <div id="nav-overlay" class="fixed w-full h-full top-0 bg-black bg-opacity-10 z-20 transition-opacity duration-300 hidden backdrop-blur-sm pointer-events-none"></div>
           <nav class="bg-[#F1F1F1] border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-            <div class="max-w-screen-2xl flex flex-wrap items-end justify-between mx-auto p-4">
-              <a href="#" class="flex items-center ">
+            <div class="w-screen-2xl flex flex-wrap items-end justify-between mx-auto p-4">
+              <a href="#" class="flex items-center ml-3 ">
 
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TRYHEADSHOT</span>
               </a>
@@ -544,11 +544,9 @@ export default class Home extends Component {
           <div class="fixed inset-0 bg-black bg-opacity-10 backdrop-blur-md z-[998] transition-opacity duration-200 invisible opacity-0"></div>
           <section class="flex flex-col md:flex-row pt-32 md:pt-36 pb-20 md:pb-9 bg-[#F1F1F1]" data-background="bg-black">
             <div class="rw-container relative text-center md:text-left p-8">
-              <div class="mb-7 text-xl font-semibold">Powered by AI</div>
-              <div class="text-[56px] md:text-[70px] xxl:text-[50px] mb-10 md:mb-12 leading-none tracking-tight font-semibold md:w-3/4">Studio-Quality Headshots  </div>
-              <div class="text-[56px] md:text-[70px] xxl:text-[50px] mb-10 md:mb-12 leading-none tracking-tight font-semibold md:w-3/4">In 30 Minutes </div>
+            
               <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2">
+                <div class="md:w-2/3">
                   <div class="block md:hidden mb-6">
                     {/* <video class="rounded-md" autoPlay loop muted playsInline>
                       <source type="video/mp4" />
@@ -556,6 +554,10 @@ export default class Home extends Component {
                     </video> */}
                     <img src="/genimage.png"></img>
                   </div>
+                  <div class="mb-7 text-xl font-semibold">Powered by AI</div>
+              <div class="text-[56px] md:text-[70px] xxl:text-[50px] mb-10 md:mb-12 leading-none tracking-tight font-semibold md:w-3/4">Studio-Quality Headshots  </div>
+            
+                  <div class="text-[56px] md:text-[70px] xxl:text-[50px] mb-10 md:mb-12 leading-none tracking-tight font-semibold md:w-3/4">In 30 Minutes </div>
                   <div class="text-lg md:text-2xl leading-tight mb-12 font-medium md:pr-20">Skip the studio. Upload your selfies and get 20+ professional headshots tailored to your personal brand, delivered in under 30 minutes.</div>
                   <a href="/waitlist" class="text-black flex md:inline-flex items-center justify-center py-3 px-6 bg-[#A8AFB9] bg-opacity-30 rounded-full hover:bg-opacity-70 transition-all duration-150">
                     <div class="text-xl font-semibold leading-tight">Get Your Headshots</div>
@@ -565,8 +567,8 @@ export default class Home extends Component {
                     </svg>
                   </a>
                 </div>
-                <div class="md:w-1/2 md:mt-0 hidden md:block justify-end">
-                <img src="/genimage.png" class="h-[500px] w-[500px] "></img>
+                <div class="md:w-1/3 md:mt-0 hidden md:block items-end">
+                <img src="/genimage.png" class="h-[500px] w-[500px] ml-auto  "></img>
                 </div>
               </div>
             </div>
@@ -849,7 +851,7 @@ export default class Home extends Component {
             </div>
 
           </div>
-          <footer class="lg:pt-5 text-white bg-[#000000] relative">
+          <footer class=" text-white bg-[#000000] relative">
             {/* <div class="rw-container flex-col lg:flex-row hidden md:flex p-8">
               <div class="lg:w-1/5 mb-6 justify-between flex">
                 <div class="h-5">
@@ -1119,10 +1121,10 @@ export default class Home extends Component {
                 </ul>
               </div>
             </div> */}
-            <div class="rw-container p-8 flex mt-14 md:mt-64 text-lg lg:justify-end relative bg-[#761FE3] text-[#C8B4E4] pt-0">
+            <div class="rw-container p-8 flex   text-lg lg:justify-end relative bg-[#761FE3] text-[#C8B4E4]">
               <div class="lg:w-1/5 mb-10 hidden md:block pr-12">2025 Try Headshot Pro.</div>
               <div class="md:w-4/5 w-full flex flex-col md:flex-row md:justify-start">
-                <ul class="flex flex-col md:flex-row md:space-x-11">
+                {/* <ul class="flex flex-col md:flex-row md:space-x-11">
                   <li>
                     <a href="/terms-of-use" class="hover:text-white">Terms of Use</a>
                   </li>
@@ -1132,16 +1134,16 @@ export default class Home extends Component {
                   <li>
                     <a href="/coc" class="hover:text-white">Code of Conduct</a>
                   </li>
-                </ul>
+                </ul> */}
                 <div class="flex mt-32 md:mt-0 md:mr-32 justify-between">
-                  <svg class="transform translate-y-1 md:hidden" width="120" height="21" viewBox="0 0 120 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* <svg class="transform translate-y-1 md:hidden" width="120" height="21" viewBox="0 0 120 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0.422712H4.55581L4.97852 2.818C5.87089 0.939335 7.79649 0 9.81606 0C10.8024 0 11.7887 0.234851 12.4932 0.516651L11.4129 6.05872C10.7084 5.63602 9.81609 5.35422 8.73586 5.35422C6.90416 5.35422 5.40117 6.62231 5.40117 9.39335V18.2701H0V0.422712Z" class="fill-current"></path>
                     <path d="M14.5596 11.6945V0.422472H19.9607V10.6612C19.9607 12.7278 21.135 13.808 22.8258 13.808C24.5635 13.808 26.0664 12.446 26.0664 9.44009V0.375488H31.4676V18.1759H26.9588L26.3483 15.8276C25.5029 17.2366 23.3424 18.5986 20.7123 18.5986C17.2367 18.6456 14.5596 16.3912 14.5596 11.6945Z" class="fill-current"></path>
                     <path d="M34.5205 0.422712H39.0294L39.6399 2.77105C40.4853 1.36205 42.5988 0 45.2289 0C48.7045 0 51.3346 2.25441 51.3346 6.90411V18.2231H45.9334V8.03133C45.9334 5.91783 44.8532 4.79061 43.0685 4.79061C41.4247 4.79061 39.9217 6.15266 39.9217 9.2055V18.2231H34.5205V0.422712Z" class="fill-current"></path>
                     <path d="M52.2739 0.422852H57.769L61.0097 12.4933L63.8747 4.55592L62.4657 0.422852H67.9139L71.4364 12.4933L74.5831 0.422852H80.1252L74.3013 18.2232H68.6653L66.223 11.1313L63.7338 18.2232H58.1448L52.2739 0.422852Z" class="fill-current"></path>
                     <path d="M80.2192 9.34639C80.2192 3.19375 84.6341 0 88.6733 0C91.1625 0 92.9472 0.986296 93.8396 2.01956L94.3562 0.422712H99.3817V18.2231H94.591L93.8396 16.4853C93.0881 17.3777 91.4913 18.6458 88.4384 18.6458C84.0705 18.6458 80.2192 15.0294 80.2192 9.34639ZM94.0744 9.34639C94.0744 6.48142 92.2427 4.69667 89.8944 4.69667C87.4991 4.69667 85.7143 6.52839 85.7143 9.34639C85.7143 12.2114 87.546 13.9961 89.8944 13.9961C92.1957 13.9961 94.0744 12.2114 94.0744 9.34639Z" class="fill-current"></path>
                     <path d="M105.065 25.3622L108.071 17.2839L100.979 0.422852H106.802L110.748 11.4131L114.317 0.422852H120L110.654 25.3622H105.065Z" class="fill-current"></path>
-                  </svg>
+                  </svg> */}
                   <div class="lg:w-1/5 mb-6 justify-between flex md:hidden">2023 TryHeadshot AI, Inc.</div>
                 </div>
               </div>

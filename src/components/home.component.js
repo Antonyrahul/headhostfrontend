@@ -498,9 +498,15 @@ export default class Home extends Component {
               <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
                 <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#F1F1F1] md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#F1F1F1] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                   <li>
-                    <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
+                    <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 mt-3 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
                   </li>
                   <li>
+                  <a href="/waitlist" class="text-black flex md:inline-flex items-center justify-center py-3 px-6 bg-[#A8AFB9] bg-opacity-30 rounded-full hover:bg-opacity-70 transition-all duration-150">
+                    <div class="text-xl font-semibold leading-tight">Get Your Headshots now</div>
+   
+                  </a>
+                  </li>
+                  {/* <li>
                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Dropdown <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
 
                     <div id="dropdownNavbar" class="z-10 hidden font-normal bg-[#F1F1F1] divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
@@ -519,8 +525,8 @@ export default class Home extends Component {
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Sign out</a>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
                   </li>
                   <li>
@@ -528,7 +534,7 @@ export default class Home extends Component {
                   </li>
                   <li>
                     <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -538,8 +544,9 @@ export default class Home extends Component {
           <div class="fixed inset-0 bg-black bg-opacity-10 backdrop-blur-md z-[998] transition-opacity duration-200 invisible opacity-0"></div>
           <section class="flex flex-col md:flex-row pt-32 md:pt-36 pb-20 md:pb-9 bg-[#F1F1F1]" data-background="bg-black">
             <div class="rw-container relative text-center md:text-left p-8">
-              <div class="mb-7 text-xl font-semibold">AI Magic Tools</div>
-              <div class="text-[56px] md:text-[70px] xxl:text-[50px] mb-10 md:mb-12 leading-none tracking-tight font-semibold md:w-3/4">Studio-Quality Headshots in 30 Minutes — Powered by AI</div>
+              <div class="mb-7 text-xl font-semibold">Powered by AI</div>
+              <div class="text-[56px] md:text-[70px] xxl:text-[50px] mb-10 md:mb-12 leading-none tracking-tight font-semibold md:w-3/4">Studio-Quality Headshots  </div>
+              <div class="text-[56px] md:text-[70px] xxl:text-[50px] mb-10 md:mb-12 leading-none tracking-tight font-semibold md:w-3/4">In 30 Minutes </div>
               <div class="flex flex-col md:flex-row">
                 <div class="md:w-1/2">
                   <div class="block md:hidden mb-6">
@@ -558,8 +565,8 @@ export default class Home extends Component {
                     </svg>
                   </a>
                 </div>
-                <div class="md:w-1/2 mt-6 md:mt-0 hidden md:block">
-                <img src="/genimage.png" class="h-50"></img>
+                <div class="md:w-1/2 md:mt-0 hidden md:block justify-end">
+                <img src="/genimage.png" class="h-[500px] w-[500px] "></img>
                 </div>
               </div>
             </div>
@@ -591,7 +598,7 @@ export default class Home extends Component {
           <section class="bg-[#F2D972]">
             <div class="rw-container p-8">
               <div class="pt-6 lg:pt-12 pb-2/16 ">
-                <h2 class="leading-tight text-4xl lg:text-[4.2vw] xxl:text-[60px] font-semibold tracking-tight">How to use Text to Image</h2>
+                <h2 class="leading-tight text-4xl lg:text-[4.2vw] xxl:text-[60px] font-semibold tracking-tight">How to get your headshots?</h2>
               </div>
               <div class="flex flex-col lg:flex-row lg:space-x-20 border-t border-[#00000025] lg:border-t-0 divide-y lg:divide-y-0 divide-[#00000025]">
                 <div class="flex-1 flex flex-col pt-7 pb-10 lg:pt-14 lg:pb-36 ">
@@ -728,7 +735,7 @@ export default class Home extends Component {
                     </div>
                   </div>
                   <div id="faq5" data-collapse="collapse" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
-                    <div class="py-8 lg:w-5/8 text-lg">We don't cut corners when it comes to generating photorealistic AI headshots. We're not the fastest, but you'll always get same-day results with ForgeHeadshots. Our Executive package is delivered in 1 hour or less.</div>
+                    <div class="py-8 lg:w-5/8 text-lg">We don't cut corners when it comes to generating photorealistic AI headshots. We're not the fastest, but you'll always get same-day results with Try headshot Pro. Our Executive package is delivered in 1 hour or less.</div>
                   </div>
                 </div>
                 <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
@@ -820,7 +827,7 @@ export default class Home extends Component {
             <div class="mt-12 px-8">
               <div class="text-lg">
                 Want more help? <br />
-                Write us at <a href="mailto:support@tryheadshot.pro" class="underline">support@tryheadshot.com</a>
+                Write us at <a href="mailto:support@tryheadshot.pro" class="underline">saikrishna@untitled1.in</a>
                 .
               </div>
             </div>
@@ -828,10 +835,10 @@ export default class Home extends Component {
           <div class="bg-[#1D1D1D]">
             <div class="rw-container py-7 lg:py-14 p-8">
               <div class="text-center lg:text-left">
-                <div class="text-[28px] lg:text-[3.8vw] text-white leading-tight font-semibold tracking-tight">Everything you need to make anything you want.</div>
+                <div class="text-[28px] lg:text-[3.8vw] text-white leading-tight font-semibold tracking-tight">Headshots you will ever need.</div>
                 <div class="mt-6">
                   <a href="/waitlist" class="text-white items-center justify-center py-3 px-6 bg-[#292929] rounded-full backdrop-blur-md inline-flex">
-                    <div class="text-xl font-semibold leading-tight">Try ThryHeadshot.pro for Free</div>
+                    <div class="text-xl font-semibold leading-tight">Try TryHeadshot.pro</div>
                     <svg class="ml-4" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M6.21425 7.12711L1.10757 2.02044L2.12891 0.999104L8.25692 7.12711L2.12891 13.2551L1.10757 12.2338L6.21425 7.12711Z" fill="white"></path>
                       <path d="M1.10757 2.02044L0.754018 1.66689L0.400465 2.02044L0.754018 2.37399L1.10757 2.02044ZM6.21425 7.12711L6.5678 7.48067L6.92135 7.12711L6.5678 6.77356L6.21425 7.12711ZM2.12891 0.999104L2.48246 0.645551L2.12891 0.291997L1.77535 0.64555L2.12891 0.999104ZM8.25692 7.12711L8.61047 7.48067L8.96402 7.12711L8.61047 6.77356L8.25692 7.12711ZM2.12891 13.2551L1.77535 13.6087L2.12891 13.9622L2.48246 13.6087L2.12891 13.2551ZM1.10757 12.2338L0.754018 11.8802L0.400465 12.2338L0.754018 12.5873L1.10757 12.2338ZM0.754018 2.37399L5.86069 7.48067L6.5678 6.77356L1.46112 1.66689L0.754018 2.37399ZM1.77535 0.64555L0.754018 1.66689L1.46112 2.37399L2.48246 1.35266L1.77535 0.64555ZM0.754018 12.5873L1.77535 13.6087L2.48246 12.9016L1.46112 11.8802L0.754018 12.5873ZM5.86069 6.77356L0.754018 11.8802L1.46112 12.5873L6.5678 7.48067L5.86069 6.77356ZM8.61047 6.77356L2.48246 0.645551L1.77535 1.35266L7.90336 7.48067L8.61047 6.77356ZM2.48246 13.6087L8.61047 7.48067L7.90336 6.77356L1.77535 12.9016L2.48246 13.6087Z" fill="white"></path>
@@ -1113,7 +1120,7 @@ export default class Home extends Component {
               </div>
             </div> */}
             <div class="rw-container p-8 flex mt-14 md:mt-64 text-lg lg:justify-end relative bg-[#761FE3] text-[#C8B4E4] pt-0">
-              <div class="lg:w-1/5 mb-10 hidden md:block pr-12">2023 TryHeadshot AI, Inc.</div>
+              <div class="lg:w-1/5 mb-10 hidden md:block pr-12">2025 Try Headshot Pro.</div>
               <div class="md:w-4/5 w-full flex flex-col md:flex-row md:justify-start">
                 <ul class="flex flex-col md:flex-row md:space-x-11">
                   <li>

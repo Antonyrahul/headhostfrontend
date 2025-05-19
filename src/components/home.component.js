@@ -1,4 +1,11 @@
-import React, { Component } from "react";
+import  React, {useState, Component } from "react";
+import {
+  Collapse,
+  Button,
+  Card,
+  Typography,
+  CardBody,
+} from "@material-tailwind/react";
 
 import UserService from "../services/user.service";
 import "../App.css"
@@ -8,11 +15,21 @@ export default class Home extends Component {
     super(props);
 
     this.state = {
-      content: ""
+      content: "",
+      faq1:false
     };
   }
+ 
+
+
 
   componentDidMount() {
+    const script = document.createElement("script");
+
+    script.src = "https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js";
+    script.async = true;
+
+    document.body.appendChild(script);
     UserService.getPublicContent().then(
       response => {
         this.setState({
@@ -30,8 +47,32 @@ export default class Home extends Component {
     );
   }
 
+   handleFaqClicks = (e,eId) => {
+    e.preventDefault();
+    console.log("in",eId)
+    if(document.getElementById("path"+eId).style.visibility=="hidden")
+    {
+      document.getElementById("path"+eId).style.visibility="visible"
+    }
+    else{
+      document.getElementById("path"+eId).style.visibility="hidden"
+    }
+   
+    let selector = document.getElementById("faq"+eId).style.maxHeight
+    if(selector=="0px")
+    {
+      document.getElementById("faq"+eId).style.maxHeight="300px"
+    }
+    else{
+      document.getElementById("faq"+eId).style.maxHeight="0px"
+    }
+  }
+
+  
+
   render() {
     return (
+      // <div>
       //       <div className="homemaindiv" >
 
       //           <h3 className="aimtoolsp">AI magic tools</h3>
@@ -433,77 +474,84 @@ export default class Home extends Component {
       //  <div class="rw-container flex mt-14 md:mt-64 text-lg lg:justify-end relative bg-[#761FE3] text-[#C8B4E4] pt-10"><div class="lg:w-1/5 mb-10 hidden md:block pr-12">2023 TryHeadshot AI, Inc.</div><div class="md:w-4/5 w-full flex flex-col md:flex-row md:justify-start"><ul class="flex flex-col md:flex-row md:space-x-11">
       //  <li><a href="/terms-of-use" class="hover:text-white">Terms of Use</a></li><li><a href="/privacy-policy" class="hover:text-white">Privacy Policy</a></li><li><a href="/coc" class="hover:text-white">Code of Conduct</a></li></ul><div class="flex mt-32 md:mt-0 md:mr-32 justify-between"><svg class="transform translate-y-1 md:hidden" width="120" height="21" viewBox="0 0 120 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0.422712H4.55581L4.97852 2.818C5.87089 0.939335 7.79649 0 9.81606 0C10.8024 0 11.7887 0.234851 12.4932 0.516651L11.4129 6.05872C10.7084 5.63602 9.81609 5.35422 8.73586 5.35422C6.90416 5.35422 5.40117 6.62231 5.40117 9.39335V18.2701H0V0.422712Z" class="fill-current"></path><path d="M14.5596 11.6945V0.422472H19.9607V10.6612C19.9607 12.7278 21.135 13.808 22.8258 13.808C24.5635 13.808 26.0664 12.446 26.0664 9.44009V0.375488H31.4676V18.1759H26.9588L26.3483 15.8276C25.5029 17.2366 23.3424 18.5986 20.7123 18.5986C17.2367 18.6456 14.5596 16.3912 14.5596 11.6945Z" class="fill-current"></path><path d="M34.5205 0.422712H39.0294L39.6399 2.77105C40.4853 1.36205 42.5988 0 45.2289 0C48.7045 0 51.3346 2.25441 51.3346 6.90411V18.2231H45.9334V8.03133C45.9334 5.91783 44.8532 4.79061 43.0685 4.79061C41.4247 4.79061 39.9217 6.15266 39.9217 9.2055V18.2231H34.5205V0.422712Z" class="fill-current"></path><path d="M52.2739 0.422852H57.769L61.0097 12.4933L63.8747 4.55592L62.4657 0.422852H67.9139L71.4364 12.4933L74.5831 0.422852H80.1252L74.3013 18.2232H68.6653L66.223 11.1313L63.7338 18.2232H58.1448L52.2739 0.422852Z" class="fill-current"></path><path d="M80.2192 9.34639C80.2192 3.19375 84.6341 0 88.6733 0C91.1625 0 92.9472 0.986296 93.8396 2.01956L94.3562 0.422712H99.3817V18.2231H94.591L93.8396 16.4853C93.0881 17.3777 91.4913 18.6458 88.4384 18.6458C84.0705 18.6458 80.2192 15.0294 80.2192 9.34639ZM94.0744 9.34639C94.0744 6.48142 92.2427 4.69667 89.8944 4.69667C87.4991 4.69667 85.7143 6.52839 85.7143 9.34639C85.7143 12.2114 87.546 13.9961 89.8944 13.9961C92.1957 13.9961 94.0744 12.2114 94.0744 9.34639Z" class="fill-current"></path><path d="M105.065 25.3622L108.071 17.2839L100.979 0.422852H106.802L110.748 11.4131L114.317 0.422852H120L110.654 25.3622H105.065Z" class="fill-current"></path></svg><div class="lg:w-1/5 mb-6 justify-between flex md:hidden">2023 TryHeadshot AI, Inc.</div></div></div></div></footer>
       //   </div>
+      //   </div>
+
+
+
+
+
 
 
       <div id="__next" data-reactroot="">
         <div id="layout" className="mainclass">
           <div id="nav-overlay" class="fixed w-full h-full top-0 bg-black bg-opacity-10 z-20 transition-opacity duration-300 hidden backdrop-blur-sm pointer-events-none"></div>
           <nav class="bg-[#F1F1F1] border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-  <div class="max-w-screen-2xl flex flex-wrap items-end justify-between mx-auto p-4">
-    <a href="#" class="flex items-center ">
-        
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TRYHEADSHOT</span>
-    </a>
-    <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
-      <span class="sr-only">Open main menu</span>
-      <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-    </button>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-      <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#F1F1F1] md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#F1F1F1] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
-        </li>
-        <li>
-            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Dropdown <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
-            
-            <div id="dropdownNavbar" class="z-10 hidden font-normal bg-[#F1F1F1] divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+            <div class="max-w-screen-2xl flex flex-wrap items-end justify-between mx-auto p-4">
+              <a href="#" class="flex items-center ">
+
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TRYHEADSHOT</span>
+              </a>
+              <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+              </button>
+              <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#F1F1F1] md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#F1F1F1] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
                   </li>
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Dropdown <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
+
+                    <div id="dropdownNavbar" class="z-10 hidden font-normal bg-[#F1F1F1] divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                      <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                        </li>
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                        </li>
+                        <li>
+                          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                        </li>
+                      </ul>
+                      <div class="py-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Sign out</a>
+                      </div>
+                    </div>
                   </li>
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                    <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
                   </li>
                 </ul>
-                <div class="py-1">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Sign out</a>
-                </div>
+              </div>
             </div>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+          </nav>
 
 
           <div class="fixed inset-0 bg-black bg-opacity-10 backdrop-blur-md z-[998] transition-opacity duration-200 invisible opacity-0"></div>
           <section class="flex flex-col md:flex-row pt-32 md:pt-36 pb-20 md:pb-9 bg-[#F1F1F1]" data-background="bg-black">
             <div class="rw-container relative text-center md:text-left p-8">
               <div class="mb-7 text-xl font-semibold">AI Magic Tools</div>
-              <div class="text-[56px] md:text-[9.7vw] xxl:text-[140px] mb-10 md:mb-12 leading-none tracking-tight font-semibold md:w-3/4">Text to Image Generation</div>
+              <div class="text-[56px] md:text-[70px] xxl:text-[50px] mb-10 md:mb-12 leading-none tracking-tight font-semibold md:w-3/4">Studio-Quality Headshots in 30 Minutes — Powered by AI</div>
               <div class="flex flex-col md:flex-row">
                 <div class="md:w-1/2">
                   <div class="block md:hidden mb-6">
-                    <video class="rounded-md" autoPlay loop muted playsInline>
+                    {/* <video class="rounded-md" autoPlay loop muted playsInline>
                       <source type="video/mp4" />
                       <source src="https://d3phaj0sisr2ct.cloudfront.net/site/magic-tools/text-to-image.mp4" type="video/mp4" />
-                    </video>
+                    </video> */}
+                    <img src="/genimage.png"></img>
                   </div>
-                  <div class="text-lg md:text-2xl leading-tight mb-12 font-medium md:pr-20">Easily create an image from scratch with our AI image generator by entering descriptive text.</div>
-                  <a href="https://app.tryheadshot.pro/signup?utm_source=tryheadshot&amp;utm_medium=ai-magic-tools&amp;utm_campaign=text-to-image" class="text-black flex md:inline-flex items-center justify-center py-3 px-6 bg-[#A8AFB9] bg-opacity-30 rounded-full hover:bg-opacity-70 transition-all duration-150">
-                    <div class="text-xl font-semibold leading-tight">Try Tryheadshot.Pro for Free</div>
+                  <div class="text-lg md:text-2xl leading-tight mb-12 font-medium md:pr-20">Skip the studio. Upload your selfies and get 20+ professional headshots tailored to your personal brand, delivered in under 30 minutes.</div>
+                  <a href="/waitlist" class="text-black flex md:inline-flex items-center justify-center py-3 px-6 bg-[#A8AFB9] bg-opacity-30 rounded-full hover:bg-opacity-70 transition-all duration-150">
+                    <div class="text-xl font-semibold leading-tight">Get Your Headshots</div>
                     <svg class="ml-4" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M6.21425 7.12711L1.10757 2.02044L2.12891 0.999104L8.25692 7.12711L2.12891 13.2551L1.10757 12.2338L6.21425 7.12711Z" class="fill-current"></path>
                       <path d="M1.10757 2.02044L0.754018 1.66689L0.400465 2.02044L0.754018 2.37399L1.10757 2.02044ZM6.21425 7.12711L6.5678 7.48067L6.92135 7.12711L6.5678 6.77356L6.21425 7.12711ZM2.12891 0.999104L2.48246 0.645551L2.12891 0.291997L1.77535 0.64555L2.12891 0.999104ZM8.25692 7.12711L8.61047 7.48067L8.96402 7.12711L8.61047 6.77356L8.25692 7.12711ZM2.12891 13.2551L1.77535 13.6087L2.12891 13.9622L2.48246 13.6087L2.12891 13.2551ZM1.10757 12.2338L0.754018 11.8802L0.400465 12.2338L0.754018 12.5873L1.10757 12.2338ZM0.754018 2.37399L5.86069 7.48067L6.5678 6.77356L1.46112 1.66689L0.754018 2.37399ZM1.77535 0.64555L0.754018 1.66689L1.46112 2.37399L2.48246 1.35266L1.77535 0.64555ZM0.754018 12.5873L1.77535 13.6087L2.48246 12.9016L1.46112 11.8802L0.754018 12.5873ZM5.86069 6.77356L0.754018 11.8802L1.46112 12.5873L6.5678 7.48067L5.86069 6.77356ZM8.61047 6.77356L2.48246 0.645551L1.77535 1.35266L7.90336 7.48067L8.61047 6.77356ZM2.48246 13.6087L8.61047 7.48067L7.90336 6.77356L1.77535 12.9016L2.48246 13.6087Z" class="fill-current"></path>
@@ -511,10 +559,31 @@ export default class Home extends Component {
                   </a>
                 </div>
                 <div class="md:w-1/2 mt-6 md:mt-0 hidden md:block">
-                  <video class="rounded-md" autoPlay loop muted playsInline>
-                    <source type="video/mp4" />
-                    <source src="https://d3phaj0sisr2ct.cloudfront.net/site/magic-tools/text-to-image.mp4" type="video/mp4" />
-                  </video>
+                <img src="/genimage.png" class="h-50"></img>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="bg-black">
+            <div class="rw-container p-8">
+              <div class="pt-6 lg:pt-12 pb-2/16 ">
+                <h2 class="leading-tight text-4xl lg:text-[4.2vw] xxl:text-[60px] font-semibold tracking-tight text-white">Key Benefits</h2>
+              </div>
+              <div class="flex flex-col lg:flex-row lg:space-x-20 border-t border-[#00000025] lg:border-t-0 divide-y lg:divide-y-0 divide-[#00000025]">
+                <div class="flex-1 flex flex-col pt-7 pb-10 lg:pt-14 lg:pb-36 ">
+
+                  <div class="text-3xl lg:text-[3.9vw] xxl:text-[60px] leading-none font-medium mb-10 lg:mb-22 text-white">Custom-Trained for You</div>
+                  <div class="h-32 text-lg lg:text-xl mt-auto text-white">We fine-tune our AI on your own photos for authentic, hyper-realistic results.</div>
+                </div>
+                <div class="flex-1 flex flex-col pt-7 pb-10 lg:pt-14 lg:pb-36 ">
+
+                  <div class="text-3xl lg:text-[3.9vw] xxl:text-[60px] leading-none font-medium mb-10 lg:mb-22 text-white">Lightning-Fast Delivery</div>
+                  <div class="h-32 text-lg lg:text-xl mt-auto text-white">Perfect headshots in your inbox before your next meeting or interview.</div>
+                </div>
+                <div class="flex-1 flex flex-col pt-7 pb-10 lg:pt-14 lg:pb-36">
+
+                  <div class="text-3xl lg:text-[3.9vw] xxl:text-[60px] leading-none font-medium mb-10 lg:mb-22 text-white">50+ Hand-Picked Styles</div>
+                  <div class="h-32 text-lg lg:text-xl mt-auto text-white">Business, casual, creative—everything that best represents you.</div>
                 </div>
               </div>
             </div>
@@ -529,22 +598,22 @@ export default class Home extends Component {
                   <div class="text-3xl lg:text-[3.9vw] leading-none xxl:text-[60px] font-medium text-black mix-blend-soft-light">Step 1
 
                   </div>
-                  <div class="text-3xl lg:text-[3.9vw] xxl:text-[60px] leading-none font-medium mb-10 lg:mb-22">Write a prompt</div>
-                  <div class="h-32 text-lg lg:text-xl mt-auto">Use your imagination to craft an original line of text. You’ll want to provide as much detail as possible for the best results — commas are your friend!</div>
+                  <div class="text-3xl lg:text-[3.9vw] xxl:text-[60px] leading-none font-medium mb-10 lg:mb-22">Upload 5–10 Photos</div>
+                  <div class="h-32 text-lg lg:text-xl mt-auto">Snap or select images; our AI guides you to pick the best shots.</div>
                 </div>
                 <div class="flex-1 flex flex-col pt-7 pb-10 lg:pt-14 lg:pb-36 ">
                   <div class="text-3xl lg:text-[3.9vw] leading-none xxl:text-[60px] font-medium text-black mix-blend-soft-light">Step 2
 
                   </div>
-                  <div class="text-3xl lg:text-[3.9vw] xxl:text-[60px] leading-none font-medium mb-10 lg:mb-22">Adjust settings</div>
-                  <div class="h-32 text-lg lg:text-xl mt-auto">Change resolution, style, medium, mood, and prompt weight to customize Text to Image AI to your liking. Think: pixel-art, watercolor, vivid, sketch, among many more styles.</div>
+                  <div class="text-3xl lg:text-[3.9vw] xxl:text-[60px] leading-none font-medium mb-10 lg:mb-22">AI-Powered Generation</div>
+                  <div class="h-32 text-lg lg:text-xl mt-auto">In the cloud, we train a custom model on your face for photo-studio quality.</div>
                 </div>
                 <div class="flex-1 flex flex-col pt-7 pb-10 lg:pt-14 lg:pb-36">
                   <div class="text-3xl lg:text-[3.9vw] leading-none xxl:text-[60px] font-medium text-black mix-blend-soft-light">Step 3
 
                   </div>
-                  <div class="text-3xl lg:text-[3.9vw] xxl:text-[60px] leading-none font-medium mb-10 lg:mb-22">Generate</div>
-                  <div class="h-32 text-lg lg:text-xl mt-auto">Once you’ve chosen all your settings, choose the amount of images you’d like to generate —from one individual image to a batch of 500.</div>
+                  <div class="text-3xl lg:text-[3.9vw] xxl:text-[60px] leading-none font-medium mb-10 lg:mb-22">Download & Share</div>
+                  <div class="h-32 text-lg lg:text-xl mt-auto">Receive 20+ high-res headshots ready for LinkedIn, websites, portfolios and more.</div>
                 </div>
               </div>
             </div>
@@ -555,8 +624,8 @@ export default class Home extends Component {
               <div class="pt-6 lg:pt-40 pb-12 lg:pb-2/16">
                 <h2 class="text-center md:text-left leading-tight text-5xl lg:text-[7vw] xxl:text-[100px] tracking-tight font-semibold">Why TryHeadshot?</h2>
                 <div class="text-lg w-1/2 mt-20 lg:mt-10"></div>
-                <a href="https://app.tryheadshot.pro/signup?utm_source=tryheadshot&amp;utm_medium=ai-magic-tools&amp;utm_campaign=text-to-image" class="flex md:inline-flex items-center justify-center py-3 px-6 bg-[#A8AFB9] bg-opacity-30 rounded-full hover:bg-opacity-70 transition-all duration-150">
-                  <div class="text-xl font-semibold leading-tight">Open TryHeadshot</div>
+                <a href="/waitlist" class="flex md:inline-flex items-center justify-center py-3 px-6 bg-[#A8AFB9] bg-opacity-30 rounded-full hover:bg-opacity-70 transition-all duration-150">
+                  <div class="text-xl font-semibold leading-tight">Start Creating Headshots</div>
                   <svg class="ml-4" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.21425 7.12711L1.10757 2.02044L2.12891 0.999104L8.25692 7.12711L2.12891 13.2551L1.10757 12.2338L6.21425 7.12711Z" class="fill-current"></path>
                     <path d="M1.10757 2.02044L0.754018 1.66689L0.400465 2.02044L0.754018 2.37399L1.10757 2.02044ZM6.21425 7.12711L6.5678 7.48067L6.92135 7.12711L6.5678 6.77356L6.21425 7.12711ZM2.12891 0.999104L2.48246 0.645551L2.12891 0.291997L1.77535 0.64555L2.12891 0.999104ZM8.25692 7.12711L8.61047 7.48067L8.96402 7.12711L8.61047 6.77356L8.25692 7.12711ZM2.12891 13.2551L1.77535 13.6087L2.12891 13.9622L2.48246 13.6087L2.12891 13.2551ZM1.10757 12.2338L0.754018 11.8802L0.400465 12.2338L0.754018 12.5873L1.10757 12.2338ZM0.754018 2.37399L5.86069 7.48067L6.5678 6.77356L1.46112 1.66689L0.754018 2.37399ZM1.77535 0.64555L0.754018 1.66689L1.46112 2.37399L2.48246 1.35266L1.77535 0.64555ZM0.754018 12.5873L1.77535 13.6087L2.48246 12.9016L1.46112 11.8802L0.754018 12.5873ZM5.86069 6.77356L0.754018 11.8802L1.46112 12.5873L6.5678 7.48067L5.86069 6.77356ZM8.61047 6.77356L2.48246 0.645551L1.77535 1.35266L7.90336 7.48067L8.61047 6.77356ZM2.48246 13.6087L8.61047 7.48067L7.90336 6.77356L1.77535 12.9016L2.48246 13.6087Z" class="fill-current"></path>
@@ -566,20 +635,20 @@ export default class Home extends Component {
               <div class="grid lg:grid-cols-3 gap-10 border-t border-t-[#ffffff25] lg:border-t-0 divide-y lg:divide-y-0 divide-[#ffffff25]">
                 <div class="flex flex-1 flex-col lg:flex-row pt-6 md:pt-0 ">
                   <div>
-                    <h3 class="text-4xl mb-6 font-medium">Endless features</h3>
-                    <div class="lg:pr-12 text-lg lg:text-xl leading-tight">New AI Magic Tools are being released weekly, in addition to our fully-featured timeline video editor. Remove backgrounds with Green Screen, create custom LUTs, and add subtitles or export transcripts all in the same app. Say goodbye to clunky third-party plugins and external softwares — in TryHeadshot you have it all.</div>
+                    <h3 class="text-4xl mb-6 font-medium">Realism You Can Trust</h3>
+                    <div class="lg:pr-12 text-lg lg:text-xl leading-tight">No flat “AI look”—just genuine expressions and crisp detail</div>
                   </div>
                 </div>
                 <div class="flex flex-1 flex-col lg:flex-row pt-6 md:pt-0">
                   <div>
-                    <h3 class="text-4xl mb-6 font-medium">Edit faster</h3>
-                    <div class="lg:pr-12 text-lg lg:text-xl leading-tight">Your workflow has never been faster. We’re leveraging the latest technologies that AI has to offer to create unique next-generation tooling, but with a familiar feeling and easy entry-point. Make manual rotoscoping, sourcing stock imagery, and outsourcing storyboarding a thing of the past.</div>
+                    <h3 class="text-4xl mb-6 font-medium">Privacy First</h3>
+                    <div class="lg:pr-12 text-lg lg:text-xl leading-tight">Your photos auto-delete after 7 days, and you retain full control.</div>
                   </div>
                 </div>
                 <div class="flex flex-1 flex-col lg:flex-row pt-6 md:pt-0">
                   <div>
-                    <h3 class="text-4xl mb-6 font-medium">In the cloud</h3>
-                    <div class="lg:pr-12 text-lg lg:text-xl leading-tight">Pick up work from anywhere in the world. Collaborate in real-time. Keep your assets centralized, and just a click away. Use TryHeadshot by simply opening your browser and logging in — no software downloads or hard drive storage required.</div>
+                    <h3 class="text-4xl mb-6 font-medium">Transparent Pricing</h3>
+                    <div class="lg:pr-12 text-lg lg:text-xl leading-tight">Straightforward plans—pay only for the headshots you choose, with no hidden fees.</div>
                   </div>
                 </div>
               </div>
@@ -593,58 +662,157 @@ export default class Home extends Component {
               <div class="border-t border-white">
                 <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
                   <div class="flex justify-between items-center cursor-pointer">
-                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">How much does Text to Image cost to use?</div>
-                    <div class="transition duration-150 transform">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">What kind of photos do I need to upload?</div>
+                    <div class="transition duration-150 transform type=button"  data-collapse-target="collapse" onClick={(e)=>this.handleFaqClicks(e,"1")} >
                       <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path id="path1" d="M22.6386 1L22.6384 44.0246" stroke-width="2" ></path>
                         <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
                       </svg>
                     </div>
                   </div>
-                  <div style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-auto">
-                    <div class="py-8 lg:w-5/8 text-lg">Each Text to Image generation costs 5 credits. Credits may be purchased with a Standard or Pro plan for $.01 each, with a minimum purchase of $10. Downloading in higher resolutions may require a Standard or Pro account.</div>
+                  <div id="faq1" data-collapse="collapse" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">Make variety a priority. Varied facial expressions and varied backgrounds, taken at various times of the day, are the keys to high quality input photos. Oh, and minimal makeup and accessories, please!</div>
                   </div>
                 </div>
                 <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
                   <div class="flex justify-between items-center cursor-pointer">
-                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">Can I sell AI image generations as artwork?</div>
-                    <div class="transition duration-150 transform">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">What do you do with my uploaded photos?</div>
+                    <div class="transition duration-150 transform" onClick={(e)=>this.handleFaqClicks(e,"2")}>
                       <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path id="path2" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
                         <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
                       </svg>
+
                     </div>
                   </div>
-                  <div style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-auto">
-                    <div class="py-8 lg:w-5/8 text-lg">Yes! Anything you create using Text to Image is fully yours to use personally or commercially.</div>
+                  <div id="faq2" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">The photos you upload are used to train our AI model so it can create realistic AI headshots. These input photos are deleted within 7 days, but you can instantly delete them at any time with our 'Delete' button.</div>
                   </div>
                 </div>
                 <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
                   <div class="flex justify-between items-center cursor-pointer">
-                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">What are the system requirements to use TryHeadshot?</div>
-                    <div class="transition duration-150 transform">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">Who owns my AI photos?</div>
+                    <div class="transition duration-150 transform" onClick={(e)=>this.handleFaqClicks(e,"3")}>
                       <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path  id="path3" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
                         <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
                       </svg>
                     </div>
                   </div>
-                  <div style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-auto">
-                    <div class="py-8 lg:w-5/8 text-lg">TryHeadshot is accessible on any desktop device with an internet browser! We are currently optimized for use with Google Chrome. Simply head to app.tryheadshot.pro to get started, no downloads required.</div>
+                  <div id="faq3" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">You do. We grant you full commercial license and ownership over your photos.</div>
                   </div>
                 </div>
                 <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
                   <div class="flex justify-between items-center cursor-pointer">
-                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">What kind of files will I receive?</div>
-                    <div class="transition duration-150 transform">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">What if I don't like my photos?</div>
+                    <div class="transition duration-150 transform" onClick={(e)=>this.handleFaqClicks(e,"4")}>
                       <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path  id="path4" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
                         <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
                       </svg>
                     </div>
                   </div>
-                  <div style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-auto">
-                    <div class="py-8 lg:w-5/8 text-lg">Output results are delivered as JPG image files.</div>
+                  <div id="faq4" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">No problem. If you don't get a single profile-worthy headshot, we'll refund your entire purchase. It's our Profile-Worthy guarantee.</div>
+                  </div>
+                </div>
+                <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">How long does an AI headshot take?</div>
+                    <div class="transition duration-150 transform type=button"  data-collapse-target="collapse" onClick={(e)=>this.handleFaqClicks(e,"5")} >
+                      <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path  id="path5" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div id="faq5" data-collapse="collapse" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">We don't cut corners when it comes to generating photorealistic AI headshots. We're not the fastest, but you'll always get same-day results with ForgeHeadshots. Our Executive package is delivered in 1 hour or less.</div>
+                  </div>
+                </div>
+                <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">What do people misunderstand about AI headshots?</div>
+                    <div class="transition duration-150 transform type=button"  data-collapse-target="collapse" onClick={(e)=>this.handleFaqClicks(e,"6")} >
+                      <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path  id="path6" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div id="faq6" data-collapse="collapse" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">Not every photo is perfect. Due to the nature of AI, you might see some strange photos. Try headshot pro tries to make this clear from the start: not every photo is perfect, but we promise you'll find a profile-worthy headshot in every order to make it all worth it.</div>
+                  </div>
+                </div>
+                <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">How many good photos can I expect?</div>
+                    <div class="transition duration-150 transform type=button"  data-collapse-target="collapse" onClick={(e)=>this.handleFaqClicks(e,"7")} >
+                      <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path  id="path7" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div id="faq7" data-collapse="collapse" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">The amount of keeper headshots you get back will largely depend on the photos you provide us with. Customers who make an effort to follow the instructions closely often walk away with 8–10+ incredible photos. At the very least, we guarantee you'll get a Profile-Worthy headshot back.</div>
+                  </div>
+                </div>
+                <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">What is the most realistic headshot AI?</div>
+                    <div class="transition duration-150 transform type=button"  data-collapse-target="collapse" onClick={(e)=>this.handleFaqClicks(e,"8")} >
+                      <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path  id="path8" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div id="faq8" data-collapse="collapse" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">Try headshot pro is the most realistic headshot AI with the most reviews. It's the only major AI headshot generator using Flux to generate realistic AI headshots. </div>
+                  </div>
+                </div>
+                <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">Can I use AI headshots on LinkedIn?</div>
+                    <div class="transition duration-150 transform type=button"  data-collapse-target="collapse" onClick={(e)=>this.handleFaqClicks(e,"9")} >
+                      <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path  id="path9" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div id="faq9" data-collapse="collapse" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">25% of Try headshot pro customers use their AI headshots on LinkedIn. It's totally okay to use AI headshots on LinkedIn.</div>
+                  </div>
+                </div>
+                <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">Can ChatGPT generate headshots?</div>
+                    <div class="transition duration-150 transform type=button"  data-collapse-target="collapse" onClick={(e)=>this.handleFaqClicks(e,"10")} >
+                      <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path  id="path10" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div id="faq10" data-collapse="collapse" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">Yes, ChatGPT can generate very basic headshots. These headshots aren't realistic enough to use professionally, but they can be fun to play around with. Use Try headshot pro for AI headshots you can use professionally.</div>
+                  </div>
+                </div>
+                <div class="lg:py-8 py-4 lg:px-5 border-b border-white">
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <div class="text-lg md:text-2xl font-display leading-none pr-1/8">What AI should I use for headshots?</div>
+                    <div class="transition duration-150 transform type=button"  data-collapse-target="collapse" onClick={(e)=>this.handleFaqClicks(e,"11")} >
+                      <svg class="stroke-current" width="25" height="25" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path  id="path11" d="M22.6386 1L22.6384 44.0246" stroke-width="2"></path>
+                        <path d="M44.0244 22.5124L0.999795 22.5122" stroke-width="2"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div id="faq11" data-collapse="collapse" style={{ maxHeight: "0px" }} class="transition-all duration-500 overflow-hidden">
+                    <div class="py-8 lg:w-5/8 text-lg">The best AI headshot generators are using Flux to maximize realism. Right now, Try headshot pro is the only major headshot AI powered by Flux. You can get up to 200 professional AI headshots within 2 hours for just $29.</div>
                   </div>
                 </div>
               </div>
@@ -662,7 +830,7 @@ export default class Home extends Component {
               <div class="text-center lg:text-left">
                 <div class="text-[28px] lg:text-[3.8vw] text-white leading-tight font-semibold tracking-tight">Everything you need to make anything you want.</div>
                 <div class="mt-6">
-                  <a href="https://app.tryheadshot.pro/signup" class="text-white items-center justify-center py-3 px-6 bg-[#292929] rounded-full backdrop-blur-md inline-flex">
+                  <a href="/waitlist" class="text-white items-center justify-center py-3 px-6 bg-[#292929] rounded-full backdrop-blur-md inline-flex">
                     <div class="text-xl font-semibold leading-tight">Try ThryHeadshot.pro for Free</div>
                     <svg class="ml-4" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M6.21425 7.12711L1.10757 2.02044L2.12891 0.999104L8.25692 7.12711L2.12891 13.2551L1.10757 12.2338L6.21425 7.12711Z" fill="white"></path>
@@ -674,8 +842,8 @@ export default class Home extends Component {
             </div>
 
           </div>
-          <footer class="lg:pt-52 text-white bg-[#111111] relative">
-            <div class="rw-container flex-col lg:flex-row hidden md:flex p-8">
+          <footer class="lg:pt-5 text-white bg-[#000000] relative">
+            {/* <div class="rw-container flex-col lg:flex-row hidden md:flex p-8">
               <div class="lg:w-1/5 mb-6 justify-between flex">
                 <div class="h-5">
                   <svg class="transform translate-y-1 h-full" viewBox="0 0 120 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -798,8 +966,8 @@ export default class Home extends Component {
                   </li>
                 </ul>
               </div>
-            </div>
-            <div class="rw-container block md:hidden pt-10">
+            </div> */}
+            {/* <div class="rw-container block md:hidden pt-10">
               <button class="rw-mobilenav-item flex items-center focus:outline-none text-2xl">
                 Product
                 <svg class="ml-3 transition duration-700 delay-100 w-3.5 transform rotate-180" viewBox="0 0 23 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -943,8 +1111,8 @@ export default class Home extends Component {
                   </li>
                 </ul>
               </div>
-            </div>
-            <div class="rw-container p-8 flex mt-14 md:mt-64 text-lg lg:justify-end relative bg-[#761FE3] text-[#C8B4E4] pt-10">
+            </div> */}
+            <div class="rw-container p-8 flex mt-14 md:mt-64 text-lg lg:justify-end relative bg-[#761FE3] text-[#C8B4E4] pt-0">
               <div class="lg:w-1/5 mb-10 hidden md:block pr-12">2023 TryHeadshot AI, Inc.</div>
               <div class="md:w-4/5 w-full flex flex-col md:flex-row md:justify-start">
                 <ul class="flex flex-col md:flex-row md:space-x-11">

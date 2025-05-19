@@ -18,6 +18,8 @@ import BoardAdmin from "./components/board-admin.component";
 import Dashboard from "./components/dashboard.component";
 import Studio from "./components/studio.component";
 import PaymentSuccess from "./components/paymentsuccess";
+import Anime from "./components/anime.component";
+import Waitlistform from "./components/waitlistform.component";
 import { Helmet } from 'react-helmet';
 import {loadStripe} from '@stripe/stripe-js';
 
@@ -157,7 +159,9 @@ class App extends Component {
             <Route path="/mod" element={<BoardModerator />} />
             <Route path="/admin" element={<BoardAdmin />} />
             <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/anime" element={<Anime/>}/>
            <Route path="/paymentsuccess" element={<PaymentSuccess/>}/>
+           <Route path="/waitlist" element={<Waitlistform/>}/>
             <Route path="/studio/:id" element={ <Elements stripe={stripePromise}><Studio/></Elements>}/>
             
           </Routes>
